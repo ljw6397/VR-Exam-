@@ -6,11 +6,14 @@ TagManager:
   tags:
   - Anchor
   - Door
+  - DisableDoor
+  - Key
+  - OpenDoor
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
   - 
