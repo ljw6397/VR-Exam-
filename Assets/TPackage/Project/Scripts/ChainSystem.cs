@@ -47,6 +47,9 @@ public class ChainSystem : MonoBehaviour
 
     public void UnLockChain()
     {
+        if (SoundManager.instance != null)
+            SoundManager.instance.PlaySound("unlock");
+
         puzzleSolved = true;
         Debug.Log("쇠사슬의 잠금이 해제되었습니다.");
     }

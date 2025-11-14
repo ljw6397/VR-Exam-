@@ -58,6 +58,9 @@ public class KeypadButton : MonoBehaviour
 
     public void InputButton()
     {
+        if (SoundManager.instance != null)
+            SoundManager.instance.PlaySound("kpButton");
+
         switch (type)
         {
             case KeypadButtonType.One:parent.InputNumber(1); break;

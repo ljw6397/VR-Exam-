@@ -16,6 +16,12 @@ public class DrawerLocker : MonoBehaviour
     }
     public void unLock()
     {
+        if (SoundManager.instance != null)
+        {
+            Debug.Log("작동한다.");
+            SoundManager.instance.PlaySound("unlock");
+        }
+
         isLocked = false;
         UpdateLockState();
     }

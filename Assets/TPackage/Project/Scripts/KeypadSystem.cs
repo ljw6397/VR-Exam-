@@ -81,6 +81,9 @@ public class KeypadSystem : MonoBehaviour
 
         if (isCorrect)    //비번 입력을 맞출 경우
         {
+            if (SoundManager.instance != null)
+                SoundManager.instance.PlaySound("kpSuccess");
+
             Debug.Log("비밀번호를 맞추셨습니다. 서랍 잠금이 해제됩니다.");
             if (locker != null)
             {
@@ -89,6 +92,9 @@ public class KeypadSystem : MonoBehaviour
         }
         else
         {
+            if (SoundManager.instance != null)
+                SoundManager.instance.PlaySound("kpWrong");
+
             Debug.Log("비밀번호를 틀리셨습니다. 다시 입력해주세요");
             //서랍 잠금 해제 실패 사운드 재생
         }
