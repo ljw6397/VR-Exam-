@@ -9,6 +9,11 @@ TagManager:
   - DisableDoor
   - Key
   - OpenDoor
+  - Projectile
+  - Spon
+  - Flame
+  - Water
+  - Destroyer
   layers:
   - Default
   - TransparentFX
@@ -16,7 +21,7 @@ TagManager:
   - Player
   - Water
   - UI
-  - 
+  - Key
   - 
   - 
   - 
