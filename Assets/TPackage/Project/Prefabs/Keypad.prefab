@@ -100,7 +100,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -452,7 +452,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -506,6 +506,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   correctResultString: 1234
   resultText: {fileID: 5711103622362115197}
+  locker: {fileID: 0}
 --- !u!1001 &373971884634709511
 PrefabInstance:
   m_ObjectHideFlags: 0

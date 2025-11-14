@@ -10,10 +10,10 @@ TagManager:
   - Key
   - OpenDoor
   - Projectile
-  - Spon
   - Flame
   - Water
   - Destroyer
+  - Hammer
   layers:
   - Default
   - TransparentFX

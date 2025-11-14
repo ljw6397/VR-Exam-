@@ -9,6 +9,7 @@ public class KeypadSystem : MonoBehaviour
 {
     [SerializeField] string correctResultString;      //비번 정답
     [SerializeField] TextMeshPro resultText;          //입력 결과 텍스트
+    [SerializeField] DrawerLocker locker;             //잠금 해제할 서랍
      
     const int resultNumberCount = 4;                  //비밀번호 숫자 개수
 
@@ -81,7 +82,6 @@ public class KeypadSystem : MonoBehaviour
         if (isCorrect)    //비번 입력을 맞출 경우
         {
             Debug.Log("비밀번호를 맞추셨습니다. 서랍 잠금이 해제됩니다.");
-            DrawerLocker locker = FindObjectOfType<DrawerLocker>();
             if (locker != null)
             {
                 locker.unLock();     //잠금 해제 함수 (서랍 잠금 해제)
