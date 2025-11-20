@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
-    public float openSpeed = 3f;
-    public float openHeight = 3f;
+    public float openSpeed = 2f;       
+    public float openAngle = 90f;      
 
-    private Vector3 closedPos;
-    private Vector3 openPos;
+    private Quaternion closedRot;
+    private Quaternion openRot;
     private bool opened = false;
 
     private void Start()
     {
-        closedPos = transform.position;
-        openPos = closedPos + new Vector3(0, openHeight, 0);
+        closedRot = transform.rotation;
+        openRot = transform.rotation * Quaternion.Euler(0, -openAngle, 0);
     }
 
     public void OpenDoor()
@@ -23,15 +23,24 @@ public class Door : MonoBehaviour
             StartCoroutine(Open());
     }
 
-    private System.Collections.IEnumerator Open()
+    IEnumerator Open()
     {
         opened = true;
+
+        Collider col = GetComponent<Collider>();
+        Rigidbody rb = GetComponent<Rigidbody>();
+
+        if (col != null) col.enabled = false;
+        if (rb != null) rb.isKinematic = true;
+
         float t = 0f;
-        while (t < 1)
+        while (t < 1f)
         {
             t += Time.deltaTime * openSpeed;
-            transform.position = Vector3.Lerp(closedPos, openPos, t);
+            transform.rotation = Quaternion.Slerp(closedRot, openRot, t);
             yield return null;
         }
+
+        transform.rotation = openRot;
     }
 }

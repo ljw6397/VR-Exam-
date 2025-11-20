@@ -5,10 +5,10 @@ using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
 public class XRButtonPress : MonoBehaviour
 {
-    public XRSimpleInteractable interactable; // 눌릴 트리거
-    public Transform buttonVisual;            // 실제로 움직이는 버튼 부분
-    public float pressDepth = 0.02f;          // 눌릴 거리
-    public float pressSpeed = 10f;            // 움직이는 속도
+    public XRSimpleInteractable interactable; 
+    public Transform buttonVisual;            
+    public float pressDepth = 0.02f;          
+    public float pressSpeed = 10f;            
 
     private Vector3 originalPos;
     private Vector3 pressedPos;
@@ -23,7 +23,6 @@ public class XRButtonPress : MonoBehaviour
         originalPos = buttonVisual.localPosition;
         pressedPos = originalPos - new Vector3(0, pressDepth, 0);
 
-        // XR Interaction 이벤트 연결
         interactable.selectEntered.AddListener(OnPressed);
         interactable.selectExited.AddListener(OnReleased);
     }
