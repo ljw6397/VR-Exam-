@@ -1,4 +1,4 @@
-using UnityEngine.Events;
+﻿using UnityEngine.Events;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactors;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
@@ -50,6 +50,9 @@ namespace UnityEngine.XR.Content.Interaction
 
         bool m_Locked = false;
 
+
+
+
         GameObject m_KeySocket;
         IXRSelectInteractable m_Key;
 
@@ -68,6 +71,7 @@ namespace UnityEngine.XR.Content.Interaction
 
         void Start()
         {
+            m_Locked = true;
             m_OpenDoorLimits = m_DoorJoint.limits;
             m_ClosedDoorLimits = m_OpenDoorLimits;
             m_ClosedDoorLimits.min = 0.0f;
@@ -110,6 +114,9 @@ namespace UnityEngine.XR.Content.Interaction
 
         public void BeginDoorPulling(SelectEnterEventArgs args)
         {
+            if (m_Locked)
+                return;  
+
             m_DoorPuller.connectedBody = args.interactorObject.GetAttachTransform(args.interactableObject);
             m_DoorPuller.enabled = true;
         }
