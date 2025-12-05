@@ -148,21 +148,26 @@ namespace UnityEngine.XR.Content.Interaction
             m_KeySocket.SetActive(false);
             m_Key.transform.gameObject.SetActive(false);
             m_KeyKnob.SetActive(true);
+
+            UnlockDoorInstant();
         }
 
+        private void UnlockDoorInstant()
+        {
+            m_Locked = false;
+            m_OnUnlock.Invoke();
+
+            m_DoorJoint.limits = m_OpenDoorLimits;
+            m_Closed = false;
+
+            m_DoorPuller.enabled = false;
+            m_DoorPuller.connectedBody = null;
+
+            Debug.Log("🔓 문 언락 + DoorPuller OFF");
+        }
         public void KeyUpdate(float keyValue)
         {
-            if (!m_Locked && keyValue > m_KeyLockValue)
-            {
-                m_Locked = true;
-                m_OnLock.Invoke();
-            }
 
-            if (m_Locked && keyValue < m_KeyUnlockValue)
-            {
-                m_Locked = false;
-                m_OnUnlock.Invoke();
-            }
         }
 
         public void KeyLockSelect(SelectEnterEventArgs args)
