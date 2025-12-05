@@ -20,4 +20,21 @@ public class CrackedWall : MonoBehaviour
             }
         }
     }
+
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    if (collision.gameObject != null)
+    //    {
+    //        if (collision.gameObject.CompareTag("Hammer"))
+    //        {
+    //            gameObject.GetComponent<Collider>().isTrigger = true;
+
+    //            foreach (GameObject obj in wallParts)
+    //            {
+    //                if (obj.GetComponent<Rigidbody>() == null)
+    //                    obj.AddComponent<Rigidbody>();
+    //            }
+    //        }
+    //    }
+    //}
 }
