@@ -15876,7 +15876,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pointA: {fileID: 1410447142}
   pointB: {fileID: 1611797417}
-  speed: 2
+  speed: 1
   waitTime: 0.5
   playerRespawnPoint: {fileID: 507865281}
 --- !u!1 &1388365868
