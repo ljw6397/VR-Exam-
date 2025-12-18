@@ -69,5 +69,11 @@ namespace UnityEngine.XR.Content.Interaction
         {
             return key != null && m_KeysHashSet.Contains(key.GetInstanceID());
         }
+
+        public void RemoveKeyContract()
+        {
+            Rigidbody rb = GetComponent<Rigidbody>();
+            rb.constraints = RigidbodyConstraints.None;
+        }
     }
 }

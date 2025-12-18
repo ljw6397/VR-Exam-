@@ -57,35 +57,10 @@ public class TTSManager : MonoBehaviour
 
     private void Start()
     {
-        //테스트용 
+        StartCoroutine(SoundUpdate());
+ 
         PlaySound("시작");
         PlaySound("움직임제한");
-        //PlaySound("구속");
-    }
-
-    private void Update()
-    {
-        if(playList.Count > 0)
-        {
-            if (playList.TryPeek(out var result))  //현재 재생 중인 TTS가 재생 중일 경우 리턴
-            {
-                if(isChangingTTS)
-                {
-                    result.Play();
-                    currentTTS = result;
-                    isChangingTTS = false;
-
-                    Debug.Log("교체한 TTS: " + currentTTS.clip.name);
-                }
-
-                if (!result.isPlaying)
-                {
-                    //해당 TTS 재생 종료
-                    playList.Dequeue();
-                    isChangingTTS = true;
-                }
-            }
-        }
     }
 
     // 사운드를 재생하는 매서드
@@ -97,8 +72,8 @@ public class TTSManager : MonoBehaviour
         {
             if (soundToPlay.isSkip)
             {
-                currentTTS.Stop();      //현재 재생 중이던 TTS 종료
                 playList.Clear();       //이전의 TTS 대기열 초기화
+                isChangingTTS = true;   //사운드 교환
                 playList.Enqueue(soundToPlay.source);
             }
             else
@@ -109,6 +84,43 @@ public class TTSManager : MonoBehaviour
         else
         {
             Debug.LogWarning("사운드 : " + name + " 없습니다.");
+        }
+    }
+
+    private IEnumerator SoundUpdate()
+    {
+        while (true)
+        {
+            if (playList.Count > 0)
+            {
+                if (playList.TryPeek(out var result))  //현재 재생 중인 TTS가 재생 중일 경우 리턴
+                {
+                    if (isChangingTTS)
+                    {
+                        if(currentTTS != null)
+                            currentTTS.Stop();      //현재 재생 중이던 TTS 종료
+
+                        currentTTS = result;
+
+                        result.Play();
+                        currentTTS = result;
+                        isChangingTTS = false;
+
+                        Debug.Log("교체한 TTS: " + currentTTS.clip.name);
+                    }
+
+                    if (!result.isPlaying)
+                    {
+                        //해당 TTS 재생 종료
+                        playList.Dequeue();
+                        isChangingTTS = true;
+
+                        yield return new WaitForSeconds(1f);  //1초 대기 후, 다음 음성 재생
+                    }
+                }
+            }
+
+            yield return null;
         }
     }
 }
